@@ -1,0 +1,20 @@
+.navigation-bar {
+  padding: 0.5rem 7.5rem;
+}
+
+.disable-blue-background .dropdown-item.active,
+.dropdown-item:active {
+  color: #212529;
+}
+
+.disable-blue-background .dropdown-item:focus,
+.dropdown-item:hover {
+  outline: none;
+  background-color: #f8f9fa;
+}
+
+@media (max-width: 750px) {
+  .navigation-bar {
+    padding: 0.5rem 1rem;
+  }
+}
