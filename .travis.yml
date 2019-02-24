@@ -6,3 +6,6 @@ branches:
     - master
 install:
   - npm install
+notifications:
+  email:
+    - tomasz.chybzinski@gmail.com
