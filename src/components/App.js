@@ -6,11 +6,11 @@ import FooterContainer from "./footer/FooterContainer";
 class App extends Component {
   render() {
     return (
-      <>
+      <div>
         <NavigationBarContainer />
         <BookCardsContainer />
         <FooterContainer />
-      </>
+      </div>
     );
   }
 }
