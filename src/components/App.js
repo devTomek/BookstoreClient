@@ -1,16 +1,19 @@
-import React, { Component } from "react";
-import NavigationBarContainer from "./navigationBar/NavigationBarContainer";
-import BookCardsContainer from "./bookcards/BookCardsContainer";
-import FooterContainer from "./footer/FooterContainer";
+import React, { Component, Suspense, lazy } from "react";
+
+const NavigationBarContainer = lazy(() =>
+  import("./navigationBar/NavigationBarContainer")
+);
+const BookCardsContainer = lazy(() => import("./bookcards/BookCardsContainer"));
+const FooterContainer = lazy(() => import("./footer/FooterContainer"));
 
 class App extends Component {
   render() {
     return (
-      <div>
+      <Suspense fallback={<div>Loading...</div>}>
         <NavigationBarContainer />
         <BookCardsContainer />
         <FooterContainer />
-      </div>
+      </Suspense>
     );
   }
 }
