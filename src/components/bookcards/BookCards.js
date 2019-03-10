@@ -11,16 +11,16 @@ import {
   Button
 } from "reactstrap";
 
-const BookCards = ({ books }) => (
+const BookCards = ({ books, bookPictureUrl }) => (
   <div className="book-cards-wrapper">
     {books.map((book, index) => (
-      <div key={index} className="book-card">
+      <div key={index} className="book-card-wrapper">
         <Card>
           <CardImg
             top
-            width="100%"
-            src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180"
-            alt="Card image cap"
+            src={bookPictureUrl}
+            alt="sapek.jpg"
+            className="book-card-image"
           />
           <CardBody>
             <CardTitle>
@@ -52,7 +52,8 @@ const BookCards = ({ books }) => (
 );
 
 BookCards.propTypes = {
-  books: PropTypes.array.isRequired
+  books: PropTypes.array.isRequired,
+  bookPictureUrl: PropTypes.string.isRequired
 };
 
 export default BookCards;

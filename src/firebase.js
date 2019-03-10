@@ -1,11 +1,13 @@
 import config from "./firebaseConfig";
 import app from "firebase/app";
 import "firebase/firebase-firestore";
+import "firebase/storage";
 
 class Firebase {
   constructor() {
     app.initializeApp(config);
     this.db = app.firestore();
+    this.storage = app.storage();
   }
 
   async getBooks() {
@@ -18,6 +20,18 @@ class Firebase {
       .catch(err => console.error(err));
 
     return books;
+  }
+
+  async getBookPicture() {
+    let pictureUrl = "";
+    const pictureRef = this.storage.ref().child("pictures/sapek.jpg");
+
+    await pictureRef
+      .getDownloadURL()
+      .then(url => (pictureUrl = url))
+      .catch(err => console.error(err));
+
+    return pictureUrl;
   }
 }
 

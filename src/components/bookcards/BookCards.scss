@@ -3,11 +3,9 @@
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
-  .book-card {
+  .book-card-wrapper {
     display: inline-block;
-    height: 500px;
-    width: 500px;
-    margin: 50px 10px 0;
+    margin: 50px 50px;
     min-width: 400px;
     .book-card-button {
       min-width: 150px;

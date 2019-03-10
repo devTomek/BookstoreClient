@@ -5,12 +5,22 @@ import Loader from "../loader/Loader";
 
 const BookCardsContainer = () => {
   const [books, setBooks] = useState([]);
+  const [bookPictureUrl, setBookPictureUrl] = useState("");
 
   useEffect(() => {
-    firebase.getBooks().then(data => setBooks(data));
+    firebase.getBooks().then(books => setBooks(books));
+    firebase.getBookPicture().then(url => setBookPictureUrl(url));
   }, []);
 
-  return <div>{books.length ? <BookCards books={books} /> : <Loader />}</div>;
+  return (
+    <div>
+      {books.length && bookPictureUrl ? (
+        <BookCards books={books} bookPictureUrl={bookPictureUrl} />
+      ) : (
+        <Loader />
+      )}
+    </div>
+  );
 };
 
 export default BookCardsContainer;
