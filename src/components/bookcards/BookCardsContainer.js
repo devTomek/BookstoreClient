@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import BookCards from "./BookCards";
 import firebase from "../../firebase";
+import Loader from "../loader/Loader";
 
 const BookCardsContainer = () => {
   const [books, setBooks] = useState([]);
@@ -9,7 +10,7 @@ const BookCardsContainer = () => {
     firebase.getBooks().then(data => setBooks(data));
   }, []);
 
-  return <BookCards books={books} />;
+  return <div>{books.length ? <BookCards books={books} /> : <Loader />}</div>;
 };
 
 export default BookCardsContainer;
