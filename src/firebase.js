@@ -33,6 +33,18 @@ class Firebase {
 
     return pictureUrl;
   }
+
+  async getBackground() {
+    let pictureUrl = "";
+    const pictureRef = this.storage.ref().child("pictures/loginPageBooks.jpg");
+
+    await pictureRef
+      .getDownloadURL()
+      .then(url => (pictureUrl = url))
+      .catch(err => console.error(err));
+
+    return pictureUrl
+  }
 }
 
 export default new Firebase();

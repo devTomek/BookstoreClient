@@ -6,14 +6,23 @@ const NavigationBarContainer = lazy(() =>
 );
 const BookCardsContainer = lazy(() => import("./bookcards/BookCardsContainer"));
 const FooterContainer = lazy(() => import("./footer/FooterContainer"));
+const LoginPageContainer = lazy(() => import("./loginPage/LoginPageContainer"))
 
 class App extends Component {
+
+  isLoggedIn = false;
+
   render() {
     return (
       <Suspense fallback={<Loader />}>
-        <NavigationBarContainer />
-        <BookCardsContainer />
-        <FooterContainer />
+        {this.isLoggedIn ?
+          <>
+            <NavigationBarContainer />
+            <BookCardsContainer />
+            <FooterContainer />
+          </> :
+          <LoginPageContainer />
+        }
       </Suspense>
     );
   }
