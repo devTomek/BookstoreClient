@@ -19,8 +19,6 @@ const BookCardsContainer = () => {
       ) : (
           <Loader />
         )}
-
-
     </div>
   );
 };
