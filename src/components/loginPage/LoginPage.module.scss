@@ -17,9 +17,9 @@
     color: black;
 }
 
-.button:hover {
-    background-color: rgb(255, 255, 181);
-    color: black;
+.button:hover, button:active {
+    background-color: rgb(255, 255, 181) !important;
+    color: black !important;
 }
 
 .formGroup {
