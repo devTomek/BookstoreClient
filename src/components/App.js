@@ -10,6 +10,7 @@ const LoginPageContainer = lazy(() => import("./loginPage/LoginPageContainer"))
 
 class App extends Component {
 
+  //todo get from redux
   isLoggedIn = false;
 
   render() {
