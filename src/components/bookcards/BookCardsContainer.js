@@ -17,8 +17,10 @@ const BookCardsContainer = () => {
       {books.length && bookPictureUrl ? (
         <BookCards books={books} bookPictureUrl={bookPictureUrl} />
       ) : (
-        <Loader />
-      )}
+          <Loader />
+        )}
+
+
     </div>
   );
 };
