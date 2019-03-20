@@ -1,32 +1,37 @@
-import React, { Component, Suspense, lazy } from "react";
+import React, { useState, useEffect, Suspense, lazy } from "react";
 import Loader from "./loader/Loader";
+import firebase from "../firebase";
 
 const NavigationBarContainer = lazy(() =>
-  import("./navigationBar/NavigationBarContainer")
+    import("./navigationBar/NavigationBarContainer")
 );
 const BookCardsContainer = lazy(() => import("./bookcards/BookCardsContainer"));
 const FooterContainer = lazy(() => import("./footer/FooterContainer"));
 const LoginPageContainer = lazy(() => import("./loginPage/LoginPageContainer"))
 
-class App extends Component {
+const App = () => {
+    const [user, setUser] = useState(null);
 
-  //todo get from redux
-  isLoggedIn = false;
+    const authListener = () => {
+        firebase.auth.onAuthStateChanged(user => user ? setUser(user) : setUser(null));
+    };
 
-  render() {
+    useEffect(() => {
+        authListener();
+    }, [])
+
     return (
-      <Suspense fallback={<Loader />}>
-        {this.isLoggedIn ?
-          <>
-            <NavigationBarContainer />
-            <BookCardsContainer />
-            <FooterContainer />
-          </> :
-          <LoginPageContainer />
-        }
-      </Suspense>
+        <Suspense fallback={<Loader />}>
+            {user ?
+                <>
+                    <NavigationBarContainer />
+                    <BookCardsContainer />
+                    <FooterContainer />
+                </> :
+                <LoginPageContainer />
+            }
+        </Suspense>
     );
-  }
 }
 
 export default App;
