@@ -5,12 +5,14 @@
   "dependencies": {
     "bootstrap": "^4.3.1",
     "firebase": "^5.8.5",
+    "jquery": "^3.3.1",
     "node-sass": "^4.11.0",
     "password-validator": "^4.1.1",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
-    "react-scripts": "2.1.5",
-    "reactstrap": "^7.1.0"
+    "react-scripts": "^2.1.8",
+    "reactstrap": "^7.1.0",
+    "typescript": "^3.3.4000"
   },
   "scripts": {
     "start": "react-scripts start",
