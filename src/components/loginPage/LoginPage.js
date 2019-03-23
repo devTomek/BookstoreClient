@@ -17,7 +17,7 @@ const LoginPage = ({ backgroundPicture, isPasswordValid, getLogin, getPassword, 
             </FormGroup>
             <FormGroup className={styles.formGroup}>
                 <Label className={styles.label}>Password</Label>
-                <Input type="password" required bsSize="lg" onChange={getPassword} invalid={!isPasswordValid()} />
+                <Input type="password" required bsSize="lg" onChange={getPassword} invalid={!isPasswordValid} />
             </FormGroup>
             <Button size="lg" className={styles.button}>Submit</Button>
         </Form>
@@ -26,13 +26,14 @@ const LoginPage = ({ backgroundPicture, isPasswordValid, getLogin, getPassword, 
 LoginPage.propTypes = {
     getLogin: PropTypes.func.isRequired,
     getPassword: PropTypes.func.isRequired,
-    isPasswordValid: PropTypes.func.isRequired,
+    isPasswordValid: PropTypes.bool,
     handleSubmit: PropTypes.func.isRequired,
     backgroundPicture: PropTypes.string,
 };
 
 LoginPage.defaultProps = {
     backgroundPicture: "",
+    isPasswordValid: true,
 };
 
 export default LoginPage;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import LoginPage from "./LoginPage";
 import firebase from "./../../firebase";
 import passwordValidator from "password-validator";
@@ -18,18 +18,28 @@ const LoginPageContainer = () => {
     // .has().not().spaces()
     // .has().symbols();
 
-    firebase.getBackground().then(url => setBackgroudPicture(url));
+    useEffect(() => {
+        getBackground();
+    }, []);
 
-    const isPasswordValid = () => password ? schema.validate(password) : true;
+    const getBackground = () => firebase.getBackground()
+        .then(url => setBackgroudPicture(url))
+        .catch(error => console.error(error));
+
+    const isPasswordValid = () => {
+        if (password.length > 0) {
+            return schema.validate(password)
+        }
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
         isPasswordValid() && firebase.login(login, password);
-    }
+    };
 
     return <LoginPage
         backgroundPicture={backgroundPicture}
-        isPasswordValid={isPasswordValid}
+        isPasswordValid={isPasswordValid()}
         handleSubmit={handleSubmit}
         getLogin={e => setLogin(e.target.value)}
         getPassword={e => setPassword(e.target.value)} />
