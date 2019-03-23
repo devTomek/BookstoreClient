@@ -45,9 +45,9 @@ const LoginPageContainer = () => {
             setLoading(true);
 
             firebase.login(login, password)
-                .then(user => {
-                    setLoading(user.isUserLoggedIn);
-                    setErrorMessage(user.errorMessage);
+                .then(errorMessage => {
+                    setLoading(false);
+                    setErrorMessage(errorMessage);
                 })
                 .catch(error => console.error(error))
         }

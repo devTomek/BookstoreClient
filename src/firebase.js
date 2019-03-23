@@ -49,21 +49,18 @@ class Firebase {
     }
 
     login = async (email, password) => {
-        let user = {
-            isLoggedIn: false,
-            errorMessage: ""
-        };
+        let errorMessage = "";
 
         await this.auth.signInWithEmailAndPassword(email, password)
             .then(() => {
-                user.isUserLoggedIn = true;
+                // handle login
             })
             .catch((error) => {
                 console.error(error.message);
-                user.errorMessage = error.message;
+                errorMessage = error.message;
             });
 
-        return user;
+        return errorMessage;
     };
 
     logout = () =>
