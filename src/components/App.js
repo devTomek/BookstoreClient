@@ -18,18 +18,17 @@ const App = () => {
 
     useEffect(() => {
         authListener();
-    }, [])
+    }, []);
 
     return (
         <Suspense fallback={<Loader />}>
             {user ?
-                <>
+                <div>
                     <NavigationBarContainer />
                     <BookCardsContainer />
                     <FooterContainer />
-                </> :
-                <LoginPageContainer />
-            }
+                </div> :
+                <LoginPageContainer />}
         </Suspense>
     );
 }

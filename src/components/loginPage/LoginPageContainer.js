@@ -11,12 +11,12 @@ const LoginPageContainer = () => {
 
     schema
         .is().min(6)
-        .is().max(100)
-        .has().uppercase()
-        .has().lowercase()
-        .has().digits()
-        .has().not().spaces()
-        .has().symbols();
+    // .is().max(100)
+    // .has().uppercase()
+    // .has().lowercase()
+    // .has().digits()
+    // .has().not().spaces()
+    // .has().symbols();
 
     firebase.getBackground().then(url => setBackgroudPicture(url));
 

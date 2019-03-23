@@ -8,9 +8,20 @@ const BookCardsContainer = () => {
   const [bookPictureUrl, setBookPictureUrl] = useState("");
 
   useEffect(() => {
-    firebase.getBooks().then(books => setBooks(books));
-    firebase.getBookPicture().then(url => setBookPictureUrl(url));
+    getBooks();
   }, []);
+
+  useEffect(() => {
+    getBackground();
+  }, []);
+
+  const getBooks = () => firebase.getBooks()
+    .then(books => setBooks(books))
+    .catch(error => console.error(error));
+
+  const getBackground = () => firebase.getBookPicture()
+    .then(url => setBookPictureUrl(url))
+    .catch(error => console.error(error));
 
   return (
     <div>
