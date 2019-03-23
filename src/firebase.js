@@ -48,14 +48,22 @@ class Firebase {
         return pictureUrl
     }
 
-    login = (email, password) => {
-        this.auth.signInWithEmailAndPassword(email, password)
+    login = async (email, password) => {
+        let user = {
+            isLoggedIn: false,
+            errorMessage: ""
+        };
+
+        await this.auth.signInWithEmailAndPassword(email, password)
             .then(() => {
-                // handle login
+                user.isUserLoggedIn = true;
             })
             .catch((error) => {
                 console.error(error.message);
+                user.errorMessage = error.message;
             });
+
+        return user;
     };
 
     logout = () =>
