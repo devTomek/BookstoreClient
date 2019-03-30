@@ -1,8 +1,8 @@
-import config from "./firebaseConfig";
 import app from "firebase/app";
 import "firebase/firebase-firestore";
 import "firebase/storage";
 import "firebase/auth";
+import { config } from "./firebaseConfig";
 
 class Firebase {
     constructor() {
@@ -38,24 +38,27 @@ class Firebase {
 
     async getBackground() {
         let pictureUrl = "";
-        const pictureRef = this.storage.ref().child("pictures/loginPageBooks.jpg");
+        const pictureRef = this.storage
+            .ref()
+            .child("pictures/loginPageBooks.jpg");
 
         await pictureRef
             .getDownloadURL()
             .then(url => (pictureUrl = url))
             .catch(err => console.error(err));
 
-        return pictureUrl
+        return pictureUrl;
     }
 
     login = async (email, password) => {
         let errorMessage = "";
 
-        await this.auth.signInWithEmailAndPassword(email, password)
+        await this.auth
+            .signInWithEmailAndPassword(email, password)
             .then(() => {
                 // handle login
             })
-            .catch((error) => {
+            .catch(error => {
                 console.error(error.message);
                 errorMessage = error.message;
             });
@@ -64,11 +67,14 @@ class Firebase {
     };
 
     logout = () =>
-        this.auth.signOut().then(() => {
-            // handle logout
-        }).catch((error) => {
-            console.error(error);
-        });
+        this.auth
+            .signOut()
+            .then(() => {
+                // handle logout
+            })
+            .catch(error => {
+                console.error(error);
+            });
 }
 
 export default new Firebase();
