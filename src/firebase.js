@@ -21,7 +21,7 @@ class Firebase {
         await booksRef
             .get()
             .then(res => res.forEach(book => books.push(book.data())))
-            .catch(err => console.error(err));
+            .catch(err => createNotification(ERROR, err, "GET: books", 0));
 
         return books;
     }
@@ -33,7 +33,7 @@ class Firebase {
         await pictureRef
             .getDownloadURL()
             .then(url => (pictureUrl = url))
-            .catch(err => console.error(err));
+            .catch(err => createNotification(ERROR, err, "GET: book picture", 0));
 
         return pictureUrl;
     }
@@ -47,7 +47,7 @@ class Firebase {
         await pictureRef
             .getDownloadURL()
             .then(url => (pictureUrl = url))
-            .catch(err => console.error(err));
+            .catch(err => createNotification(ERROR, err, "GET: background", 0));
 
         return pictureUrl;
     }
