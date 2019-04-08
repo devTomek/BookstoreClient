@@ -19,7 +19,7 @@ export const createNotification = (
     message,
     title = "",
     timeOut = 3000,
-    callback = () => {}
+    callback = () => { }
 ) => {
     const result = () => {
         switch (type) {
@@ -65,8 +65,8 @@ const App = () => {
                     <FooterContainer />
                 </div>
             ) : (
-                <LoginPageContainer />
-            )}
+                    <LoginPageContainer />
+                )}
             <NotificationContainer />
         </Suspense>
     );

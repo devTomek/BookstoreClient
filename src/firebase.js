@@ -3,6 +3,8 @@ import "firebase/firebase-firestore";
 import "firebase/storage";
 import "firebase/auth";
 import { config } from "./firebaseConfig";
+import { createNotification } from "./components/App";
+import { SUCCESS, ERROR, WARNING } from "./constants";
 
 class Firebase {
     constructor() {
@@ -51,29 +53,25 @@ class Firebase {
     }
 
     login = async (email, password) => {
-        let errorMessage = "";
-
         await this.auth
             .signInWithEmailAndPassword(email, password)
             .then(() => {
-                // handle login
+                createNotification(SUCCESS, "Logged in", "Login")
             })
             .catch(error => {
-                console.error(error.message);
-                errorMessage = error.message;
+                const errorMessage = error.message;
+                createNotification(WARNING, errorMessage, "Login", 0)
             });
-
-        return errorMessage;
     };
 
     logout = () =>
         this.auth
             .signOut()
             .then(() => {
-                // handle logout
+                createNotification(SUCCESS, "Logged out", "Login")
             })
             .catch(error => {
-                console.error(error);
+                createNotification(ERROR, error, "Login", 0)
             });
 }
 
