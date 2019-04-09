@@ -1,18 +1,19 @@
 import React, { useState, useEffect, Suspense, lazy } from "react";
-import Loader from "./loader/Loader";
-import firebase from "../firebase";
+import Loader from "../loader/Loader";
+import firebase from "../../firebase";
 import {
     NotificationContainer,
     NotificationManager
 } from "react-notifications";
-import { INFO, SUCCESS, WARNING, ERROR } from "../constants";
+import { INFO, SUCCESS, WARNING, ERROR } from "../../constants";
+import styles from "./App.module.scss";
 
 const NavigationBarContainer = lazy(() =>
-    import("./navigationBar/NavigationBarContainer")
+    import("../navigationBar/NavigationBarContainer")
 );
-const BookCardsContainer = lazy(() => import("./bookcards/BookCardsContainer"));
-const FooterContainer = lazy(() => import("./footer/FooterContainer"));
-const LoginPageContainer = lazy(() => import("./loginPage/LoginPageContainer"));
+const BookCardsContainer = lazy(() => import("../bookcards/BookCardsContainer"));
+const FooterContainer = lazy(() => import("../footer/FooterContainer"));
+const LoginPageContainer = lazy(() => import("../loginPage/LoginPageContainer"));
 
 export const createNotification = (
     type,
@@ -59,7 +60,7 @@ const App = () => {
     return (
         <Suspense fallback={<Loader />}>
             {user ? (
-                <div>
+                <div className={styles.wrapper}>
                     <NavigationBarContainer />
                     <BookCardsContainer />
                     <FooterContainer />

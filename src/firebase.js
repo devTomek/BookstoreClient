@@ -3,7 +3,7 @@ import "firebase/firebase-firestore";
 import "firebase/storage";
 import "firebase/auth";
 import { config } from "./firebaseConfig";
-import { createNotification } from "./components/App";
+import { createNotification } from "./components/app/App";
 import { SUCCESS, ERROR, WARNING } from "./constants";
 
 class Firebase {
