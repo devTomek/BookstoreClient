@@ -1,19 +1,16 @@
 import React, { useState, useEffect, Suspense, lazy } from "react";
-import Loader from "../loader/Loader";
 import firebase from "../../firebase";
 import {
     NotificationContainer,
     NotificationManager
 } from "react-notifications";
 import { INFO, SUCCESS, WARNING, ERROR } from "../../constants";
-import styles from "./App.module.scss";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Loader from "../loader/Loader";
 
-const NavigationBarContainer = lazy(() =>
-    import("../navigationBar/NavigationBarContainer")
-);
-const BookCardsContainer = lazy(() => import("../bookcards/BookCardsContainer"));
-const FooterContainer = lazy(() => import("../footer/FooterContainer"));
 const LoginPageContainer = lazy(() => import("../loginPage/LoginPageContainer"));
+const HomePage = lazy(() => import("../homePage/HomePage"));
+const RegisterPageContainer = lazy(() => import("../registerPage/RegisterPageContainer"))
 
 export const createNotification = (
     type,
@@ -58,18 +55,13 @@ const App = () => {
     };
 
     return (
-        <Suspense fallback={<Loader />}>
-            {user ? (
-                <div className={styles.wrapper}>
-                    <NavigationBarContainer />
-                    <BookCardsContainer />
-                    <FooterContainer />
-                </div>
-            ) : (
-                    <LoginPageContainer />
-                )}
-            <NotificationContainer />
-        </Suspense>
+        <Router>
+            <Suspense fallback={<Loader />}>
+                {user ? <Route exact to="/" component={HomePage} /> : <Route to="/login" component={LoginPageContainer} />}
+                <Route path="/register" component={RegisterPageContainer} />
+                <NotificationContainer />
+            </Suspense>
+        </Router>
     );
 };
 

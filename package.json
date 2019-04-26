@@ -13,6 +13,7 @@
         "react": "^16.8.2",
         "react-dom": "^16.8.2",
         "react-notifications": "^1.4.3",
+        "react-router-dom": "^5.0.0",
         "react-scripts": "^2.1.8",
         "reactstrap": "^7.1.0",
         "typescript": "^3.3.4000"
