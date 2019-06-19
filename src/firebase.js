@@ -81,6 +81,14 @@ class Firebase {
             .catch(error => {
                 createNotification(ERROR, error, "Login", 0)
             });
+
+    googleLogin = () => {
+        const provider = new app.auth.GoogleAuthProvider();
+
+        this.auth.signInWithPopup(provider)
+            .then(() => createNotification(SUCCESS, "Logged in", "Login"))
+            .catch(error => createNotification(ERROR, error.message, "Login", 0));
+    };
 }
 
 export default new Firebase();

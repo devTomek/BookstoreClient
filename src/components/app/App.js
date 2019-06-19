@@ -8,9 +8,8 @@ import { INFO, SUCCESS, WARNING, ERROR } from "../../constants";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Loader from "../loader/Loader";
 
-const LoginPageContainer = lazy(() => import("../loginPage/LoginPageContainer"));
 const HomePage = lazy(() => import("../homePage/HomePage"));
-const RegisterPageContainer = lazy(() => import("../registerPage/RegisterPageContainer"))
+const LoginPageContainer = lazy(() => import("../loginPage/LoginPageContainer"));
 
 export const createNotification = (
     type,
@@ -58,7 +57,6 @@ const App = () => {
         <Router>
             <Suspense fallback={<Loader />}>
                 {user ? <Route exact to="/" component={HomePage} /> : <Route to="/login" component={LoginPageContainer} />}
-                <Route path="/register" component={RegisterPageContainer} />
                 <NotificationContainer />
             </Suspense>
         </Router>

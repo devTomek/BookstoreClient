@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Form, FormGroup, Button, Label, Input } from "reactstrap";
 import styles from "./LoginPage.module.scss";
+import GoogleLogin from "../GoogleLogin/GoogleLogin";
 
 const LoginPage = ({ backgroundPicture, isPasswordValid, getLogin, getPassword, handleSubmit }) =>
     <div className={styles.wrapper} style={{ background: `url(${backgroundPicture}) center` }}>
@@ -19,8 +20,9 @@ const LoginPage = ({ backgroundPicture, isPasswordValid, getLogin, getPassword, 
                 <Label className={styles.label}>Password</Label>
                 <Input type="password" required bsSize="lg" onChange={getPassword} invalid={!isPasswordValid} />
             </FormGroup>
-            <Button size="lg" className={styles.button}>Submit</Button>
+            <Button size="lg" className={styles.button}>Login</Button>
         </Form>
+        <GoogleLogin />
     </div>;
 
 LoginPage.propTypes = {
